@@ -1,0 +1,10 @@
+{%extends 'task0/base.html' %}
+
+{%block content%}
+    {%for i in ls%}
+        {{i.id}}
+        <a href =" http://127.0.0.1:8000/{{i.id}}">{{i.name}}</a> 
+        <br>
+    {%endfor%}
+{%endblock%}
+

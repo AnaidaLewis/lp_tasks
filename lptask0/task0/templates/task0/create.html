@@ -1,0 +1,9 @@
+{% extends 'task0/base.html' %}
+
+{% block content %}
+<form method="post" action= "">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit" style = "background-color:rgb(255, 229, 83); border-radius:19px;"  , name ="save">{{submit}}</button>
+</form>
+{% endblock %}
