@@ -3,7 +3,21 @@
 {% block content %}
 <form method="post" action= "">
     {% csrf_token %}
-    {{form.as_p}}
+    {{form.as_table}}
     <button type="submit" style = "background-color:rgb(255, 229, 83); border-radius:19px;"  , name ="save">{{submit}}</button>
 </form>
 {% endblock %}
+
+{%block output%}
+<ul>
+
+    {%for i in ls%}
+    
+    <li>
+        <input  type = "checkbox">
+        <label><a href =" http://127.0.0.1:8000/{{i.id}}">{{i.name}}</a>{{i.id}}</label>
+    </li> 
+    <br>
+    {%endfor%}
+</ul>
+{%endblock%}
