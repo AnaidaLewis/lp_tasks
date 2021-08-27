@@ -1,33 +1,29 @@
 {%extends 'task0/base.html' %}
-
+{%block title%}Items in {{ls}}'s To Do List{%endblock%}
 {%block output%}
 <h1>{{ls.name}}</h1>
 <br>
 
 <form method = "post" action = '#'>
     {%csrf_token%}
-    {%for i in it %}  
+    {%for i in it %} 
+    <input type ="checkbox", value = "clicked", name="a{{i.id}}"> 
+    <--delete
         {%if i.complete == True%}
-            <!-- <input type ="checkbox", value = "clicked", name="a{{i.id}}">
-            ** -->
             <input type ="checkbox", value = "clicked", name="c{{i.id}}" checked>
-            <label>{{i.text}}</label>
-            
+            <label>{{i.text}}</label>  
         {%else%}
-            <!-- <input type ="checkbox", value = "clicked", name="a{{i.id}}">
-            ** -->
             <input type ="checkbox", value = "clicked", name="c{{i.id}}">
-            <label>{{i.text}}</label>
-            
+            <label>{{i.text}}</label>            
         {%endif%}
             <br>
         {% empty %}
             Sorry, no items in this list.
             <br>
     {%endfor%}
-    <button type = "submit", name = "save", value = "save"> Save </button>
-    <!-- <button type = "submit", name = "delete", value = "delete"> Delete </button> -->
+    <button type = "submit", name = "update", value = "update"> Update </button>
     <input type = "text", name = "new">
     <button type = "submit", name = "newItem", value = "newItem"> Add new Item </button>
+    <button type = "submit", name = "delete", value = "delete"> Delete </button>
 </form>
 {%endblock%}

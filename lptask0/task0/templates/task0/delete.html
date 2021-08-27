@@ -1,0 +1,10 @@
+{%entends 'task0/items.html' %}
+
+{%block output%}
+Are You sure you want to delete?
+<form action= "{% url 'delete_item' it.id %}" method="POST">
+    {% csrf_token %}
+    <button type = "submit", name = "delete", value = "delete"> Delete </button>
+</form>
+
+{%endblock%}

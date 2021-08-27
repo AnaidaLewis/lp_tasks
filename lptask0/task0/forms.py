@@ -1,5 +1,5 @@
 from django import forms
-from .models import ToDoList, Item
+from .models import ToDoList
 
 class List(forms.ModelForm):
 	class Meta:
@@ -12,8 +12,8 @@ class List(forms.ModelForm):
 # 		fields = '__all__'
 
 # class List(forms.Form):
-# 	name = forms.CharField(label="ToDoList", max_length=200)
-# 	check = forms.BooleanField(required =False)
+# 	name = forms.CharField(label="Name", max_length=200, required= False)
+
 
 # class Items(forms.Form):
 # 	name = forms.CharField(label="Enter Item", max_length=200)

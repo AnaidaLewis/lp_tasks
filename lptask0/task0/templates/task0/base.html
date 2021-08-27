@@ -3,14 +3,17 @@
         <title>Website</title>
     </head>
     <body>
-        <div id = "content", name = "content">
-            {%block content%}
-            {%endblock%}
-        </div>
+        <h1>{%block title%}To Do List{%endblock%}</h1>
+        <hr>
         <div id = "list", name = "list">
             {%block output%}
             {%endblock%}
         </div>
-
+        <div>
+            {%block content%}
+            {%endblock%}
+        </div>
+        <hr>
+        <h2>footer</h2>
     </body>
 </html>
