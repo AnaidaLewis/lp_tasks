@@ -8,12 +8,7 @@ def home(request):
     if request.method == 'POST':
         form = List(request.POST)
         if form.is_valid():
-           form.save()
-        # elif request.POST.get("delete"):
-        #     for td in ls:
-        #         if request.POST.get("a"+str(td.id)) == "clicked":
-        #             del_td = ToDoList.objects.get(id = td.id)
-        #             del_td.delete()            
+           form.save()      
     else:
         form = List()
    
@@ -46,16 +41,20 @@ def id(response,id):
                 if response.POST.get("a"+str(item.id)) == "clicked":
                     del_item = Item.objects.get(id = item.id)
                     del_item.delete()
-        
+            it = Item.objects.filter(todolist=ls)
     return render(response, 'task0/items.html',{'it':it, 'ls':ls})
 
-# def delete_item(request,id):
-#     ls = ToDoList.objects.get(id = id)
-#     it = Item.objects.filter(todolist=ls)
-#     if request.method == "POST":
-#         if request.POST.get("delete"):
-#             for item in it:
-#                 if request.POST.get("a"+str(item.id)) == "clicked":
-#                     del_item = Item.objects.get(id = item.id)
-#                     del_item.delete()
-#     return render(request, 'task0/delete.html',{'it':it, 'ls':ls})
+def delete_td(request):
+    ls = ToDoList.objects.all() 
+    if request.method == 'POST':
+        if request.POST.get("delete"):
+            for td in ls:
+                if request.POST.get("list"+str(td.id)) == "clicked":
+                    del_td = ToDoList.objects.get(id = td.id)
+                    del_td.delete()   
+            ls = ToDoList.objects.all()
+            return redirect("/")
+    else:
+            form = List()
+    
+    return render(request, "task0/create.html",{'form':form, 'submit':"Add ToDoList", 'ls':ls})

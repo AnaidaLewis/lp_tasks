@@ -9,6 +9,8 @@
 {% endblock %}
 
 {%block content%}
+<form method = 'post' action="{% url 'delete_td'%}">
+    {% csrf_token %}
     <ul>
         {%for i in ls%}
         <li>
@@ -21,6 +23,7 @@
         <button type = "submit", name = "delete", value = "delete"> Delete </button>
         
     </ul>
+</form>
 {%endblock%}
 
 
