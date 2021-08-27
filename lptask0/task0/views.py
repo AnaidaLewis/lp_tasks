@@ -8,7 +8,7 @@ def home(request):
     if request.method == 'POST':
         form = List(request.POST)
         if form.is_valid():
-           form.save()      
+            form.save()      
     else:
         form = List()
    
