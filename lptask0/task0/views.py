@@ -38,7 +38,7 @@ def id(response,id):
 
         elif response.POST.get("delete"):
             for item in it:
-                if response.POST.get("a"+str(item.id)) == "clicked":
+                if response.POST.get("c"+str(item.id)) == "clicked":
                     del_item = Item.objects.get(id = item.id)
                     del_item.delete()
             it = Item.objects.filter(todolist=ls)

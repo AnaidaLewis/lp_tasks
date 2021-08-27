@@ -7,8 +7,6 @@
 <form method = "post" action = '#'>
     {%csrf_token%}
     {%for i in it %} 
-    <input type ="checkbox", value = "clicked", name="a{{i.id}}"> 
-    <--delete
         {%if i.complete == True%}
             <input type ="checkbox", value = "clicked", name="c{{i.id}}" checked>
             <label>{{i.text}}</label>  
