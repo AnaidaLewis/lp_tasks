@@ -54,7 +54,4 @@ def delete_td(request):
                     del_td.delete()   
             ls = ToDoList.objects.all()
             return redirect("/")
-    else:
-            form = List()
     
-    return render(request, "task0/create.html",{'form':form, 'submit':"Add ToDoList", 'ls':ls})
