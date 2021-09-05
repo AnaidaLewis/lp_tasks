@@ -3,7 +3,12 @@
         <title>Website</title>
     </head>
     <body>
-        <h1>{%block title%}To Do List{%endblock%}</h1>
+        <div>
+            <h1>{%block title%}To Do List{%endblock%}</h1>
+
+        </div>
+        {%block greet%}
+        {%endblock%}
         <hr>
         <div id = "list", name = "list">
             {%block output%}
@@ -15,5 +20,7 @@
         </div>
         <hr>
         <h2>footer</h2>
+        {%block logout%}
+        {%endblock%}
     </body>
 </html>

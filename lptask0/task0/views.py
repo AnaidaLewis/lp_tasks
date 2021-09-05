@@ -1,8 +1,14 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import ToDoList, Item
 from .forms import List
+from register.decorators import unauthenticated_user, allowed_users, admin_only
+
 # Create your views here.
+
+@login_required(login_url = 'login')
+@admin_only
 def home(request):
     ls = ToDoList.objects.all() 
     if request.method == 'POST':
@@ -11,10 +17,12 @@ def home(request):
             form.save()      
     else:
         form = List()
-   
-    return render(request, "task0/create.html",{'form':form, 'submit':"Add ToDoList", 'ls':ls})
+    context = {'form':form, 'submit':"Add ToDoList", 'ls':ls}
+    return render(request, "task0/create.html",context)
 
 
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles =['Admin'])
 def id(response,id):
     ls = ToDoList.objects.get(id = id)
     it = Item.objects.filter(todolist=ls)
@@ -42,8 +50,12 @@ def id(response,id):
                     del_item = Item.objects.get(id = item.id)
                     del_item.delete()
             it = Item.objects.filter(todolist=ls)
-    return render(response, 'task0/items.html',{'it':it, 'ls':ls})
+    context = {'it':it, 'ls':ls}
+    return render(response, 'task0/items.html',context)
 
+
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles =['Admin'])
 def delete_td(request):
     ls = ToDoList.objects.all() 
     if request.method == 'POST':
@@ -55,3 +67,13 @@ def delete_td(request):
             ls = ToDoList.objects.all()
             return redirect("/")
     
+
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles =['ToDoUsers'])
+def userPage(request):
+
+    get_user = ToDoList.objects.get(user = request.user)
+    print(get_user)
+    id = get_user.id
+    return redirect("/",str(id))
+

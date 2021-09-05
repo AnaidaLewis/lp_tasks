@@ -1,0 +1,18 @@
+{% extends 'task0/base.html' %}
+
+{%block title%} Login {%endblock%}
+
+{% load crispy_forms_tags %}
+{%block content%}
+    <form method = "post" action = ''>
+        {% csrf_token %}
+        {{form|crispy}}
+
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {%endfor%}
+
+        <button type = "submit">Login</button> 
+        <p>Don't have an account? <a href="{%url 'register' %}">Register</a></p>
+    </form>
+{%endblock%} 

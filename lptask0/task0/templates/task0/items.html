@@ -1,5 +1,11 @@
 {%extends 'task0/base.html' %}
 {%block title%}Items in {{ls}}'s To Do List{%endblock%}
+
+{%block greet%}
+    <h2>Hello, {{request.user}}</h2>
+{%endblock%}
+
+
 {%block output%}
 <h1>{{ls.name}}</h1>
 <br>
@@ -9,10 +15,10 @@
     {%for i in it %} 
         {%if i.complete == True%}
             <input type ="checkbox", value = "clicked", name="c{{i.id}}" checked>
-            <label>{{i.text}}</label>  
+            <label>{{i.text}}</label>
         {%else%}
             <input type ="checkbox", value = "clicked", name="c{{i.id}}">
-            <label>{{i.text}}</label>            
+            <label>{{i.text}}</label>           
         {%endif%}
             <br>
         {% empty %}
@@ -24,4 +30,8 @@
     <button type = "submit", name = "newItem", value = "newItem"> Add new Item </button>
     <button type = "submit", name = "delete", value = "delete"> Delete </button>
 </form>
+{%endblock%}
+
+{%block logout%}
+        <h2><a href = "{% url 'login' %}">Logout</a></h2>
 {%endblock%}

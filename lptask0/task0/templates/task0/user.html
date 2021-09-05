@@ -1,0 +1,14 @@
+{% extends 'task0/base.html' %}
+
+{%block greet%}
+    <h2>Hello, {{request.user}}</h2>
+{%endblock%}
+
+{%block content%}
+    {{items}}
+{%endblock%}
+
+
+{%block logout%}
+        <h2><a href = "{% url 'logout' %}">Logout</a></h2>
+{%endblock%}
