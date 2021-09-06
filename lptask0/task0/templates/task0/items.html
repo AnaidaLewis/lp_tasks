@@ -3,14 +3,14 @@
 
 {%block greet%}
     <h2>Hello, {{request.user}}</h2>
+    <p><a href = "{% url 'account' %}">View Account</a></p>
 {%endblock%}
 
 
 {%block output%}
-<h1>{{ls.name}}</h1>
 <br>
 
-<form method = "post" action = '#'>
+<form method = "post" action = ''>
     {%csrf_token%}
     {%for i in it %} 
         {%if i.complete == True%}
@@ -33,5 +33,5 @@
 {%endblock%}
 
 {%block logout%}
-        <h2><a href = "{% url 'login' %}">Logout</a></h2>
+        <h2><a href = "{% url 'logout' %}">Logout</a></h2>
 {%endblock%}

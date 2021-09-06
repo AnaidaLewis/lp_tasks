@@ -5,7 +5,13 @@
 {%endblock%}
 
 {%block content%}
-    {{items}}
+    <img src = "{{request.user.profile_picture.url}}" alt = "No Profile Pic" >
+
+    <form method = "POST" action='' enctype = "multipart/form-data">
+    {%csrf_token%}
+    {{form.as_p}}
+    <button type="submit" style = "background-color:rgb(255, 229, 83); border-radius:19px;"  , name ="Update Info">Update Info</button>
+    </form>
 {%endblock%}
 
 

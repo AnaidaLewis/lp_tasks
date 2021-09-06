@@ -14,8 +14,10 @@ from django.contrib import messages
 # Create your views here.
 @unauthenticated_user
 def register(request):
+
     if request.method == 'POST':
         form = RegisterForm(request.POST, request.FILES)
+
         if form.is_valid():
             user = form.save()
             username = form.cleaned_data.get('username')
@@ -34,6 +36,7 @@ def register(request):
 
 @unauthenticated_user
 def loginPage(request):
+
     if request.method == "POST":
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -42,14 +45,17 @@ def loginPage(request):
         if user is not None:
             login(request,user)
             return redirect('/')
+
         else:
             messages.info(request, 'Incorrect Username or Password')
 
     context = {}
     return render(request,"register/login.html",context)
 
+
 @login_required(login_url = 'login')
 def logoutUser(request):
+
     logout(request)
     return redirect('/login')
 

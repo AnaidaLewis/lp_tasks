@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import ToDoList, Item
-from .forms import List
+from .forms import List, Account
 from register.decorators import unauthenticated_user, allowed_users, admin_only
 
 # Create your views here.
@@ -22,7 +22,6 @@ def home(request):
 
 
 @login_required(login_url = 'login')
-@allowed_users(allowed_roles =['Admin'])
 def id(response,id):
     ls = ToDoList.objects.get(id = id)
     it = Item.objects.filter(todolist=ls)
@@ -70,10 +69,19 @@ def delete_td(request):
 
 @login_required(login_url = 'login')
 @allowed_users(allowed_roles =['ToDoUsers'])
-def userPage(request):
-
+def userHome(request):
     get_user = ToDoList.objects.get(user = request.user)
     print(get_user)
-    id = get_user.id
-    return redirect("/",str(id))
+    return redirect(get_user, permanent= True)
+   
 
+@login_required(login_url = 'login')
+@allowed_users(allowed_roles =['ToDoUsers'])
+def accountSettings(request):
+    form = Account(instance = request.user)
+    if request.method == 'POST':
+       form = Account(request.POST, request.FILES, instance = request.user)
+       if form.is_valid:
+           form.save()
+    context = {"form":form}
+    return render(request, 'task0/user.html',context)

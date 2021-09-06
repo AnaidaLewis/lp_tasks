@@ -132,7 +132,8 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
-# LOGIN_REDIRECT_URL = "/"
+# LOGIN_REDIRECT_URL = "login/"
+# LOGOUT_REDIRECT_URL = "logout/"
 CRISPY_TEMPLATE_PACK = "bootstrap4" #by default crispy forms uses bootstrap2 but if u want to use anyother pack u can make changes here
 
 # Default primary key field type
