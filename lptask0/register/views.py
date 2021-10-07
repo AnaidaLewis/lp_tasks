@@ -3,7 +3,7 @@ from .forms import RegisterForm
 
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
-from.decorators import unauthenticated_user, allowed_users
+from .decorators import unauthenticated_user
 from django.contrib.auth.models import Group
 
 from task0.models import ToDoList
@@ -24,7 +24,6 @@ def register(request):
 
             group = Group.objects.get(name = 'ToDoUsers')
             user.groups.add(group)
-
             ToDoList.objects.create(user = user, name = user.username)
 
             messages.success(request, 'Account created for ' + username)

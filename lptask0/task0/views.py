@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
+from django.urls import reverse
 from django.http import HttpResponse
 from .models import ToDoList, Item
 from .forms import List, Account
-from register.decorators import unauthenticated_user, allowed_users, admin_only
+from register.decorators import  allowed_users, admin_only
 
 # Create your views here.
+
 
 @login_required(login_url = 'login')
 @admin_only
@@ -72,7 +74,8 @@ def delete_td(request):
 def userHome(request):
     get_user = ToDoList.objects.get(user = request.user)
     print(get_user)
-    return redirect(get_user, permanent= True)
+    # return redirect(reverse('id', args = [get_user.id]))
+    return redirect(get_user, permanent= True) #reverse does the same thing that u used with get absolute url
    
 
 @login_required(login_url = 'login')
@@ -85,3 +88,5 @@ def accountSettings(request):
            form.save()
     context = {"form":form}
     return render(request, 'task0/user.html',context)
+
+

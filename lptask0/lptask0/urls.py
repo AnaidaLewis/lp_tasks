@@ -23,6 +23,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include("task0.urls")),
+    path('api/', include("task0.api.urls")), # rest_framework
+    path('api/register/', include("register.api.urls")), # rest_framework
     path('register/', v.register, name = "register"),
     path('login/', v.loginPage, name = "login"),
     path('logout/', v.logoutUser, name = "logout"),
