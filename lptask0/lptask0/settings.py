@@ -74,7 +74,7 @@ ROOT_URLCONF = 'lptask0.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [], # [os.path.join(BASE_DIRS, 'templates)], for making a project level template
+        'DIRS': [], # [os.path.join(BASE_DIRS, 'templates')], for making a project level template
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

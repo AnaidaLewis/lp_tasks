@@ -20,11 +20,12 @@ def reqistration_view(request):
         data['email'] = my_user.email
         token = Token.objects.get(user = my_user).key
         data['token'] = token
-
         group = Group.objects.get(name = 'ToDoUsers')
         my_user.groups.add(group)
         ToDoList.objects.create(user = my_user, name = my_user.username)
-    
+        todolist = ToDoList.objects.get(user = my_user).id
+        data['todolist'] = todolist
+
     else:
         data = serializer.errors
     return Response(data)
